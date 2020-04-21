@@ -33,6 +33,8 @@ const PREVIEW_SUCCESS_BANNER_MSG =
 const SINK_PATH_VAL = '/tmp/cdap-ui-integration-fixtures';
 const SOURCE_PATH_VAL = 'file:/tmp/cdap-ui-integration-fixtures/airports.csv';
 
+// We don't have preview enabled in distributed mode.
+// TODO(CDAP-16620) To enable preview in distributed mode. Once it is enabled we can remove.
 let skipPreviewTests = false;
 // @ts-ignore "cy.state" is not in the "cy" type
 const getMochaContext = () => cy.state('runnable').ctx;

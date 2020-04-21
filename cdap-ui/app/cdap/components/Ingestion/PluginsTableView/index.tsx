@@ -25,8 +25,9 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import { getPluginDisplayName } from 'components/Ingestion/helpers';
 import Paper from '@material-ui/core/Paper';
+import { getPluginDisplayName } from 'components/Ingestion/helpers';
+import classnames from 'classnames';
 
 const styles = (theme): StyleRules => {
   return {
@@ -48,7 +49,9 @@ const styles = (theme): StyleRules => {
       display: 'flex',
       alignItems: 'center',
     },
-
+    tableText: {
+      fontSize: '1rem',
+    },
     pluginImageBackground: {
       display: 'flex',
       width: '100%',
@@ -56,7 +59,6 @@ const styles = (theme): StyleRules => {
       justifyContent: 'center',
       backgroundColor: theme.palette.grey[700],
     },
-    // sourceListTable: { width: 900 },
     tablePluginIcon: {
       width: '32px',
       height: 'auto',
@@ -74,6 +76,7 @@ const styles = (theme): StyleRules => {
       color: theme.palette.blue[100],
     },
     targetsCell: { maxWidth: '50%' },
+    sourceNameCell: { minWidth: '300px' },
     targetsCellHeader: { maxWidth: '50%' },
     pluginIcon: {
       width: '100px',
@@ -117,8 +120,8 @@ const PluginListView: React.FC<ICodeEditorProps> = ({
           <TableHead className={classes.ingestionHeader}>
             <TableRow>
               <TableCell></TableCell>
-              <TableCell>Name</TableCell>
-              <TableCell className={classes.TargetCellHeader} align="left">
+              <TableCell className={classes.tableText}>Source Name</TableCell>
+              <TableCell align="left" className={classes.tableText}>
                 Target
               </TableCell>
             </TableRow>
@@ -145,8 +148,12 @@ const PluginListView: React.FC<ICodeEditorProps> = ({
               });
 
               return (
-                <TableRow key={`${i}-${displayName}`} style={{ width: '100%' }}>
-                  <TableCell>
+                <TableRow
+                  key={`${i}-${displayName}`}
+                  style={{ width: '100%' }}
+                  className={classes.tableText}
+                >
+                  <TableCell className={classes.tableText}>
                     <If condition={iconData}>
                       <img className={classes.tablePluginIcon} src={iconData} />
                     </If>
@@ -158,8 +165,13 @@ const PluginListView: React.FC<ICodeEditorProps> = ({
                       />
                     </If>
                   </TableCell>
-                  <TableCell>{displayName}</TableCell>
-                  <TableCell className={classes.targetsCell} align="left">
+                  <TableCell className={classnames(classes.sourceNameCell, classes.tableText)}>
+                    {displayName}
+                  </TableCell>
+                  <TableCell
+                    className={classnames(classes.targetsCell, classes.tableText)}
+                    align="left"
+                  >
                     {matchedSinks}
                   </TableCell>
                 </TableRow>

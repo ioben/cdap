@@ -416,7 +416,7 @@ class IngestionView extends React.Component<IIngestionProps> {
                 <TextField
                   className={classes.filterInput}
                   variant="outlined"
-                  label="Filter"
+                  label="Search by source name"
                   margin="dense"
                   value={this.state.filterStr}
                   onChange={this.onFilter}
